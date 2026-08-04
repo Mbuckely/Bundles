@@ -2,17 +2,27 @@
 
 :root {
   /* Brand colors */
-  --color-dark-plum: #433034;
-  --color-dusty-burgundy: #915453;
-  --color-soft-blush: #dac8c9;
-  --color-muted-rose: #ca7c7a;
+  --color-espresso: #26130f;
+  --color-dark-brown: #33201a;
+  --color-medium-brown: #4d3027;
+  --color-warm-brown: #5c382d;
+  --color-caramel: #8b523b;
+  --color-soft-caramel: #9a6049;
+  --color-soft-neutral: #dfc9be;
+  --color-warm-neutral: #f1e4dd;
+  --color-cream: #fbf7f3;
+
+  --color-dark-plum: var(--color-espresso);
+  --color-dusty-burgundy: var(--color-medium-brown);
+  --color-soft-blush: var(--color-soft-neutral);
+  --color-muted-rose: var(--color-soft-caramel);
 
   /* Website colors */
-  --color-background: #ffffff;
-  --color-text: #433034;
-  --color-surface: #dac8c9;
-  --color-primary: #915453;
-  --color-accent: #ca7c7a;
+  --color-background: var(--color-cream);
+  --color-text: var(--color-espresso);
+  --color-surface: var(--color-warm-neutral);
+  --color-primary: var(--color-dark-brown);
+  --color-accent: var(--color-caramel);
 
   /* Layout */
   --page-width: 1400px;
@@ -89,6 +99,24 @@ img {
   padding-block: var(--section-spacing);
 }
 
+.texture-reveal {
+  animation: texture-reveal 0.72s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes texture-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(1.35rem);
+    filter: blur(5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
 .btn-primary {
   display: inline-flex;
   align-items: center;
@@ -129,6 +157,12 @@ img {
 ::selection {
   background-color: var(--color-muted-rose);
   color: #ffffff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .texture-reveal {
+    animation: none;
+  }
 }
 
 @media (max-width: 768px) {
