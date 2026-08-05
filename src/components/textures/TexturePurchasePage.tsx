@@ -28,7 +28,7 @@ export function TexturePurchasePage({ product }: TexturePurchasePageProps) {
     useState<BundleOption>("oneBundle");
   const [quantity, setQuantity] = useState(1);
   const [selectedImage, setSelectedImage] = useState(product.images[0]);
-  const [purchaseAction, setPurchaseAction] =
+  const [, setPurchaseAction] =
     useState<PurchaseAction>("idle");
   const [cartMessage, setCartMessage] = useState("");
 
@@ -110,11 +110,9 @@ export function TexturePurchasePage({ product }: TexturePurchasePageProps) {
     router.push("/cart");
   }
 
-  const isProcessing = purchaseAction !== "idle";
-
   return (
     <main className="min-h-screen bg-white text-black">
-      <section className="mx-auto grid w-full max-w-[1500px] gap-10 px-4 pt-16 pb-8 sm:px-6 sm:pt-20 lg:grid-cols-[minmax(0,1fr)_minmax(420px,1fr)] lg:gap-12 lg:px-10 lg:pt-24 lg:pb-14 xl:px-14">
+      <section className="mx-auto grid w-full max-w-[1500px] gap-10 px-4 pt-24 pb-8 sm:px-6 sm:pt-28 lg:grid-cols-[minmax(0,1fr)_minmax(420px,1fr)] lg:gap-12 lg:px-10 lg:pt-32 lg:pb-14 xl:px-14">
         <section
           aria-label={`${product.name} image gallery`}
           className="grid gap-4 lg:grid-cols-[78px_minmax(0,1fr)] lg:items-start"
@@ -163,7 +161,7 @@ export function TexturePurchasePage({ product }: TexturePurchasePageProps) {
           </div>
         </section>
 
-        <article className="pt-12 sm:pt-14 lg:pt-24 xl:pt-28">
+        <article className="mt-32 translate-y-16 sm:mt-36 lg:mt-44 lg:translate-y-24 xl:mt-52">
           <h1 className="font-body text-3xl font-medium leading-tight tracking-normal text-black sm:text-4xl">
             {product.name}
           </h1>
@@ -182,10 +180,6 @@ export function TexturePurchasePage({ product }: TexturePurchasePageProps) {
 
           <p className="mt-2 text-sm font-medium text-[#4B4B4B]">
             Bundle pricing available
-          </p>
-
-          <p className="mt-1 text-sm text-[#555]">
-            Free shipping on orders over $150.
           </p>
 
           <p className="mt-6 max-w-xl text-sm leading-7 text-[#333]">
@@ -247,20 +241,22 @@ export function TexturePurchasePage({ product }: TexturePurchasePageProps) {
               </span>
             </label>
 
-            <div>
+            <div className="mb-16">
               <span className="mb-2 block text-sm font-medium text-black">
                 Quantity
               </span>
+
               <div className="flex min-h-[50px] w-40 items-center justify-between rounded-full border border-[#BDBDBD] bg-white px-1">
                 <button
                   aria-label="Decrease quantity"
-                  className="grid h-10 w-10 place-items-center rounded-full text-lg text-black transition hover:bg-[#F4F4F4] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:text-[#999]"
+                  className="grid h-10 w-10 place-items-center rounded-full text-lg text-black"
                   disabled={quantity === 1}
                   type="button"
                   onClick={decreaseQuantity}
                 >
                   -
                 </button>
+
                 <input
                   aria-label="Quantity"
                   className="h-[48px] w-12 border-0 bg-transparent text-center text-sm font-medium text-black outline-none"
@@ -270,9 +266,10 @@ export function TexturePurchasePage({ product }: TexturePurchasePageProps) {
                   value={quantity}
                   onChange={handleQuantityChange}
                 />
+
                 <button
                   aria-label="Increase quantity"
-                  className="grid h-10 w-10 place-items-center rounded-full text-lg text-black transition hover:bg-[#F4F4F4] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:text-[#999]"
+                  className="grid h-10 w-10 place-items-center rounded-full text-lg text-black"
                   disabled={quantity === 10}
                   type="button"
                   onClick={increaseQuantity}
@@ -285,38 +282,37 @@ export function TexturePurchasePage({ product }: TexturePurchasePageProps) {
 
           <div
             aria-live="polite"
-            className="mt-8 border-y border-[#D7D7D7] py-4 text-sm text-[#333]"
+            className="border-y border-[#D7D7D7] py-4 text-sm text-[#333]"
+            style={{ marginTop: "48px" }}
           >
             <p>
               <span className="font-medium text-black">Selected:</span>{" "}
               {selectedLength} / {selectedBundleLabel} / Quantity {quantity}
             </p>
+
             <p className="mt-1">
               <span className="font-medium text-black">Package price:</span>{" "}
               {packagePriceLabel}
             </p>
           </div>
 
-          <div className="mt-20 grid gap-5 sm:grid-cols-2 sm:gap-6">
+          <div className="!mt-[100px] grid gap-5 sm:grid-cols-2 sm:gap-6">
             <button
-              className="min-h-12 rounded-full bg-black px-8 text-sm font-medium text-white transition hover:bg-[#303030] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-60"
-              disabled={isProcessing}
+              className="min-h-12 rounded-full bg-black px-8 text-sm font-medium text-white"
               type="button"
               onClick={handleAddToCart}
             >
-              {purchaseAction === "cart" ? "Adding..." : "Add to Cart"}
+              Add to Cart
             </button>
 
             <button
-              className="min-h-12 rounded-full border border-black bg-white px-8 text-sm font-medium text-black transition hover:bg-[#F4F4F4] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-60"
-              disabled={isProcessing}
+              className="min-h-12 rounded-full border border-black bg-white px-8 text-sm font-medium text-black"
               type="button"
               onClick={handleBuyNow}
             >
-              {purchaseAction === "buy" ? "Opening Cart..." : "Buy Now"}
+              Buy Now
             </button>
           </div>
-
           <p
             aria-live="polite"
             className="mt-4 min-h-6 text-sm font-medium text-[#333]"
