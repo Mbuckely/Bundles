@@ -114,7 +114,7 @@ export function TexturePurchasePage({ product }: TexturePurchasePageProps) {
 
   return (
     <main className="min-h-screen bg-white text-black">
-      <section className="mx-auto grid w-full max-w-[1500px] gap-10 px-4 py-8 sm:px-6 lg:grid-cols-[minmax(0,1fr)_minmax(420px,1fr)] lg:gap-12 lg:px-10 lg:py-14 xl:px-14">
+      <section className="mx-auto grid w-full max-w-[1500px] gap-10 px-4 pt-16 pb-8 sm:px-6 sm:pt-20 lg:grid-cols-[minmax(0,1fr)_minmax(420px,1fr)] lg:gap-12 lg:px-10 lg:pt-24 lg:pb-14 xl:px-14">
         <section
           aria-label={`${product.name} image gallery`}
           className="grid gap-4 lg:grid-cols-[78px_minmax(0,1fr)] lg:items-start"
@@ -163,7 +163,7 @@ export function TexturePurchasePage({ product }: TexturePurchasePageProps) {
           </div>
         </section>
 
-        <article className="lg:pt-3">
+        <article className="pt-12 sm:pt-14 lg:pt-24 xl:pt-28">
           <h1 className="font-body text-3xl font-medium leading-tight tracking-normal text-black sm:text-4xl">
             {product.name}
           </h1>
@@ -251,10 +251,10 @@ export function TexturePurchasePage({ product }: TexturePurchasePageProps) {
               <span className="mb-2 block text-sm font-medium text-black">
                 Quantity
               </span>
-              <div className="flex min-h-[50px] w-40 items-center justify-between border border-[#BDBDBD] bg-white">
+              <div className="flex min-h-[50px] w-40 items-center justify-between rounded-full border border-[#BDBDBD] bg-white px-1">
                 <button
                   aria-label="Decrease quantity"
-                  className="grid h-[48px] w-12 place-items-center text-lg text-black transition hover:bg-[#F4F4F4] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:text-[#999]"
+                  className="grid h-10 w-10 place-items-center rounded-full text-lg text-black transition hover:bg-[#F4F4F4] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:text-[#999]"
                   disabled={quantity === 1}
                   type="button"
                   onClick={decreaseQuantity}
@@ -272,7 +272,7 @@ export function TexturePurchasePage({ product }: TexturePurchasePageProps) {
                 />
                 <button
                   aria-label="Increase quantity"
-                  className="grid h-[48px] w-12 place-items-center text-lg text-black transition hover:bg-[#F4F4F4] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:text-[#999]"
+                  className="grid h-10 w-10 place-items-center rounded-full text-lg text-black transition hover:bg-[#F4F4F4] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:text-[#999]"
                   disabled={quantity === 10}
                   type="button"
                   onClick={increaseQuantity}
@@ -297,7 +297,7 @@ export function TexturePurchasePage({ product }: TexturePurchasePageProps) {
             </p>
           </div>
 
-          <div className="mt-14 grid gap-3 sm:grid-cols-2">
+          <div className="mt-20 grid gap-5 sm:grid-cols-2 sm:gap-6">
             <button
               className="min-h-12 rounded-full bg-black px-8 text-sm font-medium text-white transition hover:bg-[#303030] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-60"
               disabled={isProcessing}

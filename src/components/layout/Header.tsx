@@ -59,6 +59,9 @@ function MenuIcon({ isOpen }: { isOpen: boolean }) {
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [hiddenDropdownLabel, setHiddenDropdownLabel] = useState<string | null>(
+    null,
+  );
   const [cartCount, setCartCount] = useState(0);
 
   useEffect(() => {
@@ -117,25 +120,41 @@ export function Header() {
       >
         <ul className="site-container flex h-11 items-center justify-center gap-8 text-sm font-semibold text-[#4D3027] lg:gap-12">
           {navigationLinks.map((link) => (
-            <li className="group relative" key={link.label}>
+            <li
+              className="group relative"
+              key={link.label}
+              onMouseLeave={() => setHiddenDropdownLabel(null)}
+            >
               <Link
                 aria-haspopup={link.children ? "menu" : undefined}
                 className="inline-flex min-h-8 items-center transition hover:font-bold hover:text-[#FFB000] hover:underline hover:decoration-[#FFB000] hover:decoration-2 hover:underline-offset-4 hover:drop-shadow-[0_1px_1px_rgba(38,19,15,0.65)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FFB000] focus-visible:ring-offset-2"
                 href={link.href}
+                onFocus={() => setHiddenDropdownLabel(null)}
               >
                 {link.label}
               </Link>
 
               {link.children ? (
                 <ul
+                  aria-hidden={hiddenDropdownLabel === link.label}
                   className="invisible absolute left-1/2 top-full z-50 min-w-44 -translate-x-1/2 pt-2 text-center text-sm opacity-0 transition group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100"
                   role="menu"
+                  style={
+                    hiddenDropdownLabel === link.label
+                      ? {
+                          opacity: 0,
+                          pointerEvents: "none",
+                          visibility: "hidden",
+                        }
+                      : undefined
+                  }
                 >
                   {link.children.map((child) => (
                     <li key={child.label} role="none">
                       <Link
                         className="flex min-h-9 items-center justify-center px-4 py-2 text-[#33201A] transition hover:font-bold hover:text-[#FFB000] hover:underline hover:decoration-[#FFB000] hover:decoration-2 hover:underline-offset-4 hover:drop-shadow-[0_1px_1px_rgba(38,19,15,0.65)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FFB000]"
                         href={child.href}
+                        onClick={() => setHiddenDropdownLabel(link.label)}
                         role="menuitem"
                       >
                         {child.label}
