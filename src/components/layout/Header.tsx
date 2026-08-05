@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { SideCart } from "@/components/cart/SideCart";
 import { textureCategories } from "@/data/textures";
 import { MobileMenu } from "@/components/layout/MobileMenu";
 import { CART_UPDATED_EVENT, getCartItemCount } from "@/lib/cart";
@@ -59,6 +60,7 @@ function MenuIcon({ isOpen }: { isOpen: boolean }) {
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
   const [hiddenDropdownLabel, setHiddenDropdownLabel] = useState<string | null>(
     null,
   );
@@ -92,16 +94,23 @@ export function Header() {
         </Link>
 
         <div className="ml-auto flex items-center gap-2 text-[#33201A]">
-          <Link
+          <button
+            aria-controls="side-cart"
+            aria-expanded={isCartOpen}
+            aria-haspopup="dialog"
             aria-label="Cart"
             className="relative grid h-10 w-10 place-items-center rounded-full transition hover:bg-[#DFC9BE] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#9A6049] focus-visible:ring-offset-2"
-            href="/cart"
+            type="button"
+            onClick={() => {
+              setIsMenuOpen(false);
+              setIsCartOpen(true);
+            }}
           >
             <CartIcon />
             <span className="absolute right-1 top-1 grid h-4 min-w-4 place-items-center rounded-full bg-[#26130F] px-1 text-[10px] font-bold leading-none text-white">
               {cartCount}
             </span>
-          </Link>
+          </button>
           <button
             aria-expanded={isMenuOpen}
             aria-label="Toggle menu"
@@ -172,6 +181,11 @@ export function Header() {
         isOpen={isMenuOpen}
         links={navigationLinks}
         onClose={() => setIsMenuOpen(false)}
+      />
+
+      <SideCart
+        isOpen={isCartOpen}
+        onClose={() => setIsCartOpen(false)}
       />
     </header>
   );

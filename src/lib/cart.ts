@@ -151,6 +151,40 @@ export function addCartItem(
   return updatedItems;
 }
 
+export function updateCartItemQuantity(
+  variantId: string,
+  quantity: number,
+) {
+  const cartItems = getCartItems();
+  const requestedQuantity = Number.isFinite(quantity) ? quantity : 1;
+  const safeQuantity = Math.max(
+    1,
+    Math.min(10, Math.floor(requestedQuantity)),
+  );
+  const updatedItems = cartItems.map((cartItem) =>
+    cartItem.variantId === variantId
+      ? {
+          ...cartItem,
+          quantity: safeQuantity,
+        }
+      : cartItem,
+  );
+
+  saveCartItems(updatedItems);
+
+  return updatedItems;
+}
+
+export function removeCartItem(variantId: string) {
+  const updatedItems = getCartItems().filter(
+    (cartItem) => cartItem.variantId !== variantId,
+  );
+
+  saveCartItems(updatedItems);
+
+  return updatedItems;
+}
+
 export function getCartItemCount() {
   return getCartItems().reduce((total, item) => total + item.quantity, 0);
 }
