@@ -2,10 +2,9 @@ import Link from "next/link";
 
 const footerLinks = [
   { label: "Home", href: "/" },
-  { label: "Features", href: "#features" },
-  { label: "Pricing", href: "#pricing" },
+  { label: "Pricing", href: "/pricing" },
   { label: "FAQs", href: "#faqs" },
-  { label: "About", href: "#about" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export function Footer() {
@@ -19,7 +18,7 @@ export function Footer() {
       <div className="grid gap-6 md:grid-cols-3 md:items-center">
         <Link
           aria-label="RRLUX Extensions home"
-          className="justify-self-start font-heading text-2xl font-semibold text-[#26130F] transition hover:text-[#8B523B] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#9A6049] focus-visible:ring-offset-2"
+          className="justify-self-start font-heading text-2xl font-semibold text-[#26130F] transition hover:font-bold hover:text-[#FFB000] hover:underline hover:decoration-[#FFB000] hover:decoration-2 hover:underline-offset-4 hover:drop-shadow-[0_1px_1px_rgba(38,19,15,0.65)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FFB000] focus-visible:ring-offset-2"
           href="/"
         >
           RRLUX
@@ -29,7 +28,7 @@ export function Footer() {
           {footerLinks.map((link) => (
             <li key={link.label}>
               <Link
-                className="font-medium text-[#4D3027] transition hover:text-[#26130F] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#9A6049] focus-visible:ring-offset-2"
+                className="font-medium text-[#4D3027] transition hover:font-bold hover:text-[#FFB000] hover:underline hover:decoration-[#FFB000] hover:decoration-2 hover:underline-offset-4 hover:drop-shadow-[0_1px_1px_rgba(38,19,15,0.65)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FFB000] focus-visible:ring-offset-2"
                 href={link.href}
               >
                 {link.label}
@@ -44,6 +43,7 @@ export function Footer() {
               Subscribe to our newsletter
             </h5>
             <p className="mt-1 text-sm text-[#4D3027]">
+              Be first to know about new drops and bundle offers.
             </p>
           </div>
           <div className="flex w-full flex-col gap-2 sm:flex-row md:w-auto">
@@ -67,7 +67,7 @@ export function Footer() {
       </div>
 
       <p className="mt-6 text-center font-medium text-[#4D3027]">
-        &copy; {year} Company, Inc
+        &copy; {year} RRLUX Extensions
       </p>
     </footer>
   );

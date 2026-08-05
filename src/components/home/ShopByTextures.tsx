@@ -86,16 +86,16 @@ function TextureCard({
       />
 
       <span className="absolute inset-x-4 bottom-6 flex justify-center sm:bottom-9">
-        <span className="relative font-heading text-xl font-bold uppercase tracking-[0.12em] text-white sm:text-2xl">
+        <span className="relative font-heading text-xl font-bold uppercase tracking-[0.12em] text-white transition group-hover:text-[#FFB000] group-hover:drop-shadow-[0_1px_1px_rgba(38,19,15,0.75)] group-focus-visible:text-[#FFB000] sm:text-2xl">
           {texture.name}
 
-          <span className="absolute inset-x-0 -bottom-1.5 h-[2px] origin-center scale-x-0 bg-white transition-transform duration-300 ease-out group-hover:scale-x-100 group-focus-visible:scale-x-100" />
+          <span className="absolute inset-x-0 -bottom-1.5 h-[2px] origin-center scale-x-0 bg-[#FFB000] transition-transform duration-300 ease-out group-hover:scale-x-100 group-focus-visible:scale-x-100" />
         </span>
       </span>
 
       <span
         aria-hidden="true"
-        className="absolute inset-0 ring-1 ring-inset ring-white/0 transition group-focus-visible:ring-white/60"
+        className="absolute inset-0 ring-1 ring-inset ring-white/0 transition group-hover:ring-[#FFB000]/55 group-focus-visible:ring-[#FFB000]/80"
       />
     </Link>
   );
@@ -213,7 +213,7 @@ export function ShopByTextures() {
 
         <div className="flex justify-center">
           <Link
-            className="texture-reveal font-body text-sm font-extrabold uppercase tracking-[0.18em] text-[#33201A] underline decoration-[#9A6049]/45 decoration-2 underline-offset-8 transition hover:text-[#8B523B] hover:decoration-[#8B523B] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#9A6049] focus-visible:ring-offset-4"
+            className="texture-reveal font-body text-sm font-extrabold uppercase tracking-[0.18em] text-[#33201A] underline decoration-[#9A6049]/45 decoration-2 underline-offset-8 transition hover:text-[#FFB000] hover:decoration-[#FFB000] hover:drop-shadow-[0_1px_1px_rgba(38,19,15,0.65)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FFB000] focus-visible:ring-offset-4"
             href="#contact"
             style={{
               animationDelay: "560ms",
