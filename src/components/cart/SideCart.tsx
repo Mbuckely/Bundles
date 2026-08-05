@@ -261,13 +261,13 @@ export function SideCart({ isOpen, onClose }: SideCartProps) {
           {items.length === 0 ? (
             <p className="mt-8 text-sm text-[#555]">Your cart is empty.</p>
           ) : (
-            <ul className="divide-y divide-[#E5E5E5]">
+            <ul className="grid gap-8">
               {items.map((item) => {
                 const itemTotal = item.price * item.quantity;
 
                 return (
                   <li
-                    className="grid grid-cols-[78px_minmax(0,1fr)_24px] gap-x-4 py-7"
+                    className="grid grid-cols-[78px_minmax(0,1fr)_24px] gap-x-4 border-b border-[#E5E5E5] pb-8 last:border-b-0 last:pb-0"
                     key={item.variantId}
                   >
                     <div className="relative h-[52px] w-[78px] border border-[#D2D2D2] bg-white">
@@ -350,13 +350,18 @@ export function SideCart({ isOpen, onClose }: SideCartProps) {
           )}
         </div>
 
-        <footer className="px-8 pb-5">
+        <footer
+          className="px-8"
+          style={{
+            paddingBottom: "max(40px, calc(env(safe-area-inset-bottom) + 28px))",
+          }}
+        >
           <form
-            className="border-t border-[#BDBDBD] pt-4"
+            className="border-t border-[#BDBDBD] pb-4 pt-5"
             onSubmit={handlePromoSubmit}
           >
             <label
-              className="flex min-h-[48px] w-full items-center gap-3 border-b border-[#E7E2DD] pb-4 text-[16px] text-[#8C765F]"
+              className="flex min-h-[48px] w-full items-center gap-3 border-b border-[#E7E2DD] pb-5 text-[16px] text-[#8C765F]"
               htmlFor="cart-promo-code"
             >
               <TagIcon />
@@ -372,7 +377,7 @@ export function SideCart({ isOpen, onClose }: SideCartProps) {
             </label>
 
             {hasPromoCode ? (
-              <div className="mt-3">
+              <div className="mt-4 pb-2">
                 <button
                   className="min-h-10 w-full rounded-full border border-black bg-black px-5 text-[15px] font-medium text-white transition hover:bg-[#333] disabled:cursor-not-allowed disabled:border-[#BDBDBD] disabled:bg-[#BDBDBD]"
                   disabled={promoStatus === "checking"}
@@ -411,8 +416,8 @@ export function SideCart({ isOpen, onClose }: SideCartProps) {
           </div>
 
           <Link
-            className="mt-4 flex min-h-11 w-full items-center justify-center rounded-full border border-black bg-white px-6 text-[16px] font-normal text-black transition hover:bg-[#F4F4F4] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
-            href="/cart"
+            className="mt-5 flex min-h-11 w-full items-center justify-center rounded-full border border-black bg-white px-6 text-[16px] font-normal text-black transition hover:bg-[#F4F4F4] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+            href="/checkout"
             onClick={onClose}
           >
             View Cart
