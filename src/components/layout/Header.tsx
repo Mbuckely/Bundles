@@ -1,9 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { textureCategories } from "@/data/textures";
 import { MobileMenu } from "@/components/layout/MobileMenu";
+import { CART_UPDATED_EVENT, getCartItemCount } from "@/lib/cart";
 
 const navigationLinks = [
   { label: "Home", href: "/" },
@@ -12,10 +13,10 @@ const navigationLinks = [
     href: "/#shop-hair",
     children: textureCategories.map((texture) => ({
       label: texture.name,
-      href: `/${texture.href}`,
+      href: texture.href,
     })),
   },
-  { label: "Contact", href: "/#contact" },
+  { label: "Pricing", href: "/pricing" },
 ];
 
 function CartIcon() {
@@ -58,34 +59,50 @@ function MenuIcon({ isOpen }: { isOpen: boolean }) {
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [cartCount, setCartCount] = useState(0);
+
+  useEffect(() => {
+    function syncCartCount() {
+      setCartCount(getCartItemCount());
+    }
+
+    syncCartCount();
+    window.addEventListener(CART_UPDATED_EVENT, syncCartCount);
+    window.addEventListener("storage", syncCartCount);
+
+    return () => {
+      window.removeEventListener(CART_UPDATED_EVENT, syncCartCount);
+      window.removeEventListener("storage", syncCartCount);
+    };
+  }, []);
 
   return (
     <header className="sticky top-0 z-40 bg-[#DFC9BE]/95 shadow-[0_10px_30px_rgba(38,19,15,0.1)] backdrop-blur">
-      <div className="site-container relative flex min-h-[4.75rem] items-center justify-between gap-4 py-4 md:min-h-[5.25rem]">
+      <div className="site-container relative flex min-h-[3.75rem] items-center justify-between gap-4 py-3 md:min-h-[4.25rem]">
         <div className="hidden w-10 sm:block" aria-hidden="true" />
 
         <Link
           href="/"
-          className="absolute left-1/2 -translate-x-1/2 text-center font-body text-xl font-extrabold uppercase tracking-wide text-[#26130F] outline-none transition hover:text-[#5C382D] focus-visible:ring-2 focus-visible:ring-[#9A6049] focus-visible:ring-offset-2 sm:text-2xl lg:text-3xl"
+          className="absolute left-1/2 -translate-x-1/2 text-center font-body text-lg font-extrabold uppercase tracking-wide text-[#26130F] outline-none transition hover:text-[#FFB000] hover:drop-shadow-[0_1px_1px_rgba(38,19,15,0.65)] focus-visible:ring-2 focus-visible:ring-[#FFB000] focus-visible:ring-offset-2 sm:text-xl lg:text-2xl"
         >
           RRLUX EXTENSIONS
         </Link>
 
         <div className="ml-auto flex items-center gap-2 text-[#33201A]">
-          <button
+          <Link
             aria-label="Cart"
-            className="relative grid h-11 w-11 place-items-center rounded-full transition hover:bg-[#DFC9BE] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#9A6049] focus-visible:ring-offset-2"
-            type="button"
+            className="relative grid h-10 w-10 place-items-center rounded-full transition hover:bg-[#DFC9BE] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#9A6049] focus-visible:ring-offset-2"
+            href="/cart"
           >
             <CartIcon />
             <span className="absolute right-1 top-1 grid h-4 min-w-4 place-items-center rounded-full bg-[#26130F] px-1 text-[10px] font-bold leading-none text-white">
-              0
+              {cartCount}
             </span>
-          </button>
+          </Link>
           <button
             aria-expanded={isMenuOpen}
             aria-label="Toggle menu"
-            className="grid h-10 w-10 place-items-center rounded-full transition hover:bg-[#DFC9BE]/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#9A6049] focus-visible:ring-offset-2 md:hidden"
+            className="grid h-9 w-9 place-items-center rounded-full transition hover:bg-[#DFC9BE]/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#9A6049] focus-visible:ring-offset-2 md:hidden"
             type="button"
             onClick={() => setIsMenuOpen((open) => !open)}
           >
@@ -98,12 +115,12 @@ export function Header() {
         aria-label="Main navigation"
         className="hidden md:block"
       >
-        <ul className="site-container flex h-14 items-center justify-center gap-9 text-sm font-semibold text-[#4D3027] lg:gap-14">
+        <ul className="site-container flex h-11 items-center justify-center gap-8 text-sm font-semibold text-[#4D3027] lg:gap-12">
           {navigationLinks.map((link) => (
             <li className="group relative" key={link.label}>
               <Link
                 aria-haspopup={link.children ? "menu" : undefined}
-                className="inline-flex min-h-10 items-center transition hover:text-[#26130F] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#9A6049] focus-visible:ring-offset-2"
+                className="inline-flex min-h-8 items-center transition hover:font-bold hover:text-[#FFB000] hover:underline hover:decoration-[#FFB000] hover:decoration-2 hover:underline-offset-4 hover:drop-shadow-[0_1px_1px_rgba(38,19,15,0.65)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FFB000] focus-visible:ring-offset-2"
                 href={link.href}
               >
                 {link.label}
@@ -111,13 +128,13 @@ export function Header() {
 
               {link.children ? (
                 <ul
-                  className="invisible absolute left-1/2 top-full z-50 min-w-44 -translate-x-1/2 rounded bg-[#F1E4DD] p-2 text-center text-sm opacity-0 shadow-xl ring-1 ring-[#9A6049]/35 transition group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100"
+                  className="invisible absolute left-1/2 top-full z-50 min-w-44 -translate-x-1/2 pt-2 text-center text-sm opacity-0 transition group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100"
                   role="menu"
                 >
                   {link.children.map((child) => (
                     <li key={child.label} role="none">
                       <Link
-                        className="flex min-h-9 items-center justify-center rounded px-4 py-2 text-[#33201A] transition hover:bg-[#9A6049] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#9A6049]"
+                        className="flex min-h-9 items-center justify-center px-4 py-2 text-[#33201A] transition hover:font-bold hover:text-[#FFB000] hover:underline hover:decoration-[#FFB000] hover:decoration-2 hover:underline-offset-4 hover:drop-shadow-[0_1px_1px_rgba(38,19,15,0.65)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FFB000]"
                         href={child.href}
                         role="menuitem"
                       >

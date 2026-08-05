@@ -24,7 +24,7 @@ export function MobileMenu({ isOpen, links, onClose }: MobileMenuProps) {
           {links.map((link) => (
             <li key={link.label}>
               <Link
-                className="block py-3 text-sm font-semibold text-[#33201A] outline-none transition hover:text-[#26130F] focus-visible:ring-2 focus-visible:ring-[#9A6049] focus-visible:ring-offset-2"
+                className="block py-3 text-sm font-semibold text-[#33201A] outline-none transition hover:font-bold hover:text-[#FFB000] hover:underline hover:decoration-[#FFB000] hover:decoration-2 hover:underline-offset-4 hover:drop-shadow-[0_1px_1px_rgba(38,19,15,0.65)] focus-visible:ring-2 focus-visible:ring-[#FFB000] focus-visible:ring-offset-2"
                 href={link.href}
                 onClick={onClose}
               >
@@ -35,7 +35,7 @@ export function MobileMenu({ isOpen, links, onClose }: MobileMenuProps) {
                   {link.children.map((child) => (
                     <li key={child.label}>
                       <Link
-                        className="block py-2 text-sm font-medium text-[#5C382D] outline-none transition hover:text-[#26130F] focus-visible:ring-2 focus-visible:ring-[#9A6049] focus-visible:ring-offset-2"
+                        className="block py-2 text-sm font-medium text-[#5C382D] outline-none transition hover:font-bold hover:text-[#FFB000] hover:underline hover:decoration-[#FFB000] hover:decoration-2 hover:underline-offset-4 hover:drop-shadow-[0_1px_1px_rgba(38,19,15,0.65)] focus-visible:ring-2 focus-visible:ring-[#FFB000] focus-visible:ring-offset-2"
                         href={child.href}
                         onClick={onClose}
                       >
