@@ -8,18 +8,37 @@ import { MobileMenu } from "@/components/layout/MobileMenu";
 import { CART_UPDATED_EVENT, getCartItemCount } from "@/lib/cart";
 
 const navigationLinks = [
-  { label: "Home", href: "/" },
   {
     label: "Textures",
-    href: "/#shop-hair",
-    children: textureCategories.map((texture) => ({
-      label: texture.name,
-      href: texture.href,
-    })),
+    href: "/textures/kinky-straight",
+    children: [
+      {
+        label: "Kinky Straight",
+        href: "/textures/kinky-straight",
+      },
+      {
+        label: "Natural Wavy",
+        href: "/textures/natural-wavy",
+      },
+      {
+        label: "Burmese Curly",
+        href: "/textures/burmese-curly",
+      },
+    ],
   },
-  { label: "Pricing", href: "/pricing" },
+  {
+    label: "Book An Experience",
+    href: "https://app.acuityscheduling.com/schedule/06e329e8",
+  },
+  {
+    label: "FAQ's",
+    href: "/faq",
+  },
+  {
+    label: "Policies",
+    href: "/policies",
+  },
 ];
-
 function CartIcon() {
   return (
     <svg aria-hidden="true" className="h-6 w-6" fill="none" viewBox="0 0 24 24">
@@ -82,16 +101,17 @@ export function Header() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-40 bg-[#DFC9BE]/95 shadow-[0_10px_30px_rgba(38,19,15,0.1)] backdrop-blur">
+    <header className="sticky top-0 z-40 bg-[#5C382E]/95 shadow-[0_10px_30px_rgba(38,19,15,0.15)] backdrop-blur">
       <div className="site-container relative flex min-h-[3.75rem] items-center justify-between gap-4 py-3 md:min-h-[4.25rem]">
         <div className="hidden w-10 sm:block" aria-hidden="true" />
 
-        <Link
-          href="/"
-          className="absolute left-1/2 -translate-x-1/2 text-center font-body text-lg font-extrabold uppercase tracking-wide text-[#26130F] outline-none transition hover:text-[#FFB000] hover:drop-shadow-[0_1px_1px_rgba(38,19,15,0.65)] focus-visible:ring-2 focus-visible:ring-[#FFB000] focus-visible:ring-offset-2 sm:text-xl lg:text-2xl"
-        >
-          RRLUX EXTENSIONS
-        </Link>
+
+<Link
+  href="/"
+  className="absolute left-1/2 -translate-x-1/2 logo-flash text-center font-body text-lg font-extrabold uppercase tracking-wide text-[#FFF9F5] outline-none transition hover:text-[#D8BFB2] focus-visible:ring-2 focus-visible:ring-[#FFF9F5] focus-visible:ring-offset-2 sm:text-xl lg:text-2xl"
+>
+  RR LUX EXTENSIONS
+</Link>
 
         <div className="ml-auto flex items-center gap-2 text-[#33201A]">
           <button
@@ -127,7 +147,7 @@ export function Header() {
         aria-label="Main navigation"
         className="hidden md:block"
       >
-        <ul className="site-container flex h-11 items-center justify-center gap-8 text-sm font-semibold text-[#4D3027] lg:gap-12">
+        <ul className="site-container flex h-11 items-center justify-center gap-8 text-sm font-semibold text-[#F1E4DD] lg:gap-12">
           {navigationLinks.map((link) => (
             <li
               className="group relative"
@@ -143,39 +163,39 @@ export function Header() {
                 {link.label}
               </Link>
 
-              {link.children ? (
-                <ul
-                  aria-hidden={hiddenDropdownLabel === link.label}
-                  className="invisible absolute left-1/2 top-full z-50 min-w-44 -translate-x-1/2 pt-2 text-center text-sm opacity-0 transition group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100"
-                  role="menu"
-                  style={
-                    hiddenDropdownLabel === link.label
-                      ? {
-                          opacity: 0,
-                          pointerEvents: "none",
-                          visibility: "hidden",
-                        }
-                      : undefined
-                  }
-                >
-                  {link.children.map((child) => (
-                    <li key={child.label} role="none">
-                      <Link
-                        className="flex min-h-9 items-center justify-center px-4 py-2 text-[#33201A] transition hover:font-bold hover:text-[#FFB000] hover:underline hover:decoration-[#FFB000] hover:decoration-2 hover:underline-offset-4 hover:drop-shadow-[0_1px_1px_rgba(38,19,15,0.65)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FFB000]"
-                        href={child.href}
-                        onClick={() => setHiddenDropdownLabel(link.label)}
-                        role="menuitem"
-                      >
-                        {child.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              ) : null}
-            </li>
-          ))}
-        </ul>
-      </nav>
+ {link.children ? (
+  <ul
+    aria-hidden={hiddenDropdownLabel === link.label}
+    className="invisible absolute left-1/2 top-full z-50 min-w-44 -translate-x-1/2 pt-3 text-center text-sm opacity-0 transition-opacity duration-200 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100"
+    role="menu"
+    style={
+      hiddenDropdownLabel === link.label
+        ? {
+            opacity: 0,
+            pointerEvents: "none",
+            visibility: "hidden",
+          }
+        : undefined
+    }
+  >
+    {link.children.map((child) => (
+      <li key={child.label} role="none">
+        <Link
+  className="flex min-h-10 items-center justify-center px-5 py-2 font-semibold !text-black transition-colors duration-200 hover:!text-[#5C382E] focus-visible:outline-none"
+  href={child.href}
+  onClick={() => setHiddenDropdownLabel(link.label)}
+  role="menuitem"
+>
+  {child.label}
+</Link>
+      </li>
+    ))}
+  </ul>
+) : null}
+</li>
+))}
+</ul>
+</nav>
 
       <MobileMenu
         isOpen={isMenuOpen}

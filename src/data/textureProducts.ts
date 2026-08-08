@@ -1,5 +1,9 @@
 export type BundleCount = 1 | 2 | 3;
-export type BundleOption = "oneBundle" | "twoBundles" | "threeBundles";
+
+export type BundleOption =
+  | "oneBundle"
+  | "twoBundles"
+  | "threeBundles";
 
 export type PricingItem = {
   length: string;
@@ -14,8 +18,6 @@ export type TextureProduct = {
   shortDescription: string;
   description: string;
   images: string[];
-  rating: number;
-  reviewCount: number;
   features: string[];
 };
 
@@ -32,16 +34,66 @@ export const bundleCounts: Record<BundleOption, BundleCount> = {
 };
 
 export const pricing: PricingItem[] = [
-  { length: '12"', oneBundle: 100, twoBundles: 195, threeBundles: 285 },
-  { length: '14"', oneBundle: 110, twoBundles: 215, threeBundles: 315 },
-  { length: '16"', oneBundle: 120, twoBundles: 235, threeBundles: 345 },
-  { length: '18"', oneBundle: 135, twoBundles: 265, threeBundles: 390 },
-  { length: '20"', oneBundle: 150, twoBundles: 295, threeBundles: 435 },
-  { length: '22"', oneBundle: 165, twoBundles: 325, threeBundles: 480 },
-  { length: '24"', oneBundle: 185, twoBundles: 365, threeBundles: 540 },
-  { length: '26"', oneBundle: 205, twoBundles: 405, threeBundles: 600 },
-  { length: '28"', oneBundle: 225, twoBundles: 445, threeBundles: 660 },
-  { length: '30"', oneBundle: 250, twoBundles: 495, threeBundles: 735 },
+  {
+    length: '12"',
+    oneBundle: 100,
+    twoBundles: 195,
+    threeBundles: 285,
+  },
+  {
+    length: '14"',
+    oneBundle: 110,
+    twoBundles: 215,
+    threeBundles: 315,
+  },
+  {
+    length: '16"',
+    oneBundle: 120,
+    twoBundles: 235,
+    threeBundles: 345,
+  },
+  {
+    length: '18"',
+    oneBundle: 135,
+    twoBundles: 265,
+    threeBundles: 390,
+  },
+  {
+    length: '20"',
+    oneBundle: 150,
+    twoBundles: 295,
+    threeBundles: 435,
+  },
+  {
+    length: '22"',
+    oneBundle: 165,
+    twoBundles: 325,
+    threeBundles: 480,
+  },
+  {
+    length: '24"',
+    oneBundle: 185,
+    twoBundles: 365,
+    threeBundles: 540,
+  },
+  {
+    length: '26"',
+    oneBundle: 205,
+    twoBundles: 405,
+    threeBundles: 600,
+  },
+  {
+    length: '28"',
+    oneBundle: 225,
+    twoBundles: 445,
+    threeBundles: 660,
+  },
+  {
+    length: '30"',
+    oneBundle: 250,
+    twoBundles: 495,
+    threeBundles: 735,
+  },
 ];
 
 export const bundleOptions: BundleOption[] = [
@@ -54,54 +106,53 @@ export const textureProducts: TextureProduct[] = [
   {
     slug: "kinky-straight",
     name: "Kinky Straight",
-    shortDescription: "Premium raw hair with a soft, blown-out texture.",
+    shortDescription:
+      "Premium raw hair with a soft, blown-out texture.",
     description:
       "Premium raw hair with a soft, blown-out texture, natural volume, and a seamless blend with pressed or naturally textured hair.",
     images: [
-      "/textures/kinky-straight/main.png",
-      "/textures/kinky-straight/detail-1.png",
-      "/textures/kinky-straight/model.png",
+      "/kinky/kinky1.png",
+      "/kinky/kinky2.png",
+      "/kinky/kinky3.jpg",
     ],
-    rating: 4.9,
-    reviewCount: 128,
     features: [
       "Textured, blown-out appearance",
       "Natural volume",
       "Blends well with pressed or naturally textured hair",
     ],
   },
+
   {
-    slug: "natural-wavy",
-    name: "Natural Wavy",
-    shortDescription: "Premium raw hair with soft natural waves.",
-    description:
-      "Premium raw hair with soft natural waves, lightweight movement, and versatile styling options.",
-    images: [
-      "/textures/natural-wavy/main.png",
-      "/textures/natural-wavy/detail-1.png",
-      "/textures/natural-wavy/model.png",
-    ],
-    rating: 4.8,
-    reviewCount: 96,
-    features: [
-      "Soft natural waves",
-      "Lightweight movement",
-      "Styles well for relaxed waves or a polished finish",
-    ],
-  },
+  slug: "natural-wavy",
+  name: "Natural Wavy",
+  shortDescription:
+    "Premium raw hair with soft natural waves.",
+  description:
+    "Premium raw hair with soft natural waves, lightweight movement, and versatile styling options.",
+  images: [
+    "/natural wavy/navt wave1.webp",
+    "/natural wavy/wavy2.webp",
+    "/natural wavy/wavy3.webp",
+  ],
+  features: [
+    "Soft natural waves",
+    "Lightweight movement",
+    "Styles well for relaxed waves or a polished finish",
+  ],
+},
+
   {
     slug: "burmese-curly",
     name: "Burmese Curly",
-    shortDescription: "Premium raw hair with defined curls.",
+    shortDescription:
+      "Premium raw hair with defined curls.",
     description:
       "Premium raw hair with defined curls, full volume, and a soft luxurious finish.",
     images: [
-      "/textures/burmese-curly/main.png",
-      "/textures/burmese-curly/detail-1.png",
-      "/textures/burmese-curly/model.png",
+      "/burmese/bur1.webp",
+      "/burmese/burmese2.jpg",
+      "/burmese/Burmese3.jpg",
     ],
-    rating: 4.9,
-    reviewCount: 112,
     features: [
       "Defined curls",
       "Full volume",
@@ -111,15 +162,17 @@ export const textureProducts: TextureProduct[] = [
 ];
 
 export function getTextureProduct(slug: string) {
-  return textureProducts.find((product) => product.slug === slug);
+  return textureProducts.find(
+    (product) => product.slug === slug
+  );
 }
 
 export function getSelectedPrice(
   selectedLength: string,
-  selectedBundle: BundleOption,
+  selectedBundle: BundleOption
 ) {
   const selectedPricing = pricing.find(
-    (item) => item.length === selectedLength,
+    (item) => item.length === selectedLength
   );
 
   if (!selectedPricing) {
@@ -129,8 +182,13 @@ export function getSelectedPrice(
   return selectedPricing[selectedBundle];
 }
 
-export function getPackagePrice(length: string, bundleCount: BundleCount) {
-  const pricingItem = pricing.find((item) => item.length === length);
+export function getPackagePrice(
+  length: string,
+  bundleCount: BundleCount
+) {
+  const pricingItem = pricing.find(
+    (item) => item.length === length
+  );
 
   if (!pricingItem) {
     return pricing[0].oneBundle;
@@ -139,8 +197,10 @@ export function getPackagePrice(length: string, bundleCount: BundleCount) {
   switch (bundleCount) {
     case 1:
       return pricingItem.oneBundle;
+
     case 2:
       return pricingItem.twoBundles;
+
     case 3:
       return pricingItem.threeBundles;
   }
@@ -157,9 +217,12 @@ export function formatPrice(price: number) {
 export function createVariantId(
   textureSlug: string,
   length: string,
-  bundleOption: BundleOption,
+  bundleOption: BundleOption
 ) {
-  const lengthValue = length.replace(/[^0-9]/g, "");
+  const lengthValue = length.replace(
+    /[^0-9]/g,
+    ""
+  );
 
   return `${textureSlug}-${lengthValue}-${bundleOption}`;
 }

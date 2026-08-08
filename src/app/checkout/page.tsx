@@ -5,6 +5,7 @@ import Link from "next/link";
 import {
   type ChangeEvent,
   type FormEvent,
+  type HTMLAttributes,
   type ReactNode,
   type Ref,
   useEffect,
@@ -264,6 +265,11 @@ function CheckoutField({
   inputRef,
   value,
   onChange,
+  pattern,
+  inputMode,
+  maxLength,
+  title,
+  placeholder,
 }: {
   label: string;
   type?: string;
@@ -273,6 +279,11 @@ function CheckoutField({
   inputRef?: Ref<HTMLInputElement>;
   value?: string;
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
+  pattern?: string;
+  inputMode?: HTMLAttributes<HTMLInputElement>["inputMode"];
+  maxLength?: number;
+  title?: string;
+  placeholder?: string;
 }) {
   const valueProps =
     value === undefined ? { defaultValue } : { value, onChange };
@@ -287,8 +298,13 @@ function CheckoutField({
       <input
         autoComplete={autoComplete}
         className="h-[42px] w-full rounded-[3px] border border-[#9E9E9E] bg-white px-3 text-[16px] text-black outline-none transition hover:border-black focus:border-2 focus:border-black"
+        inputMode={inputMode}
+        maxLength={maxLength}
+        pattern={pattern}
+        placeholder={placeholder}
         ref={inputRef}
         required={required}
+        title={title}
         type={type}
         {...valueProps}
       />
@@ -577,8 +593,13 @@ export default function CheckoutPage() {
 
               <CheckoutField
                 autoComplete="tel"
+                inputMode="numeric"
                 label="Phone"
+                maxLength={14}
+                pattern="^\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}$"
+                placeholder="(123) 456-7890"
                 required
+                title="Enter a 10-digit phone number, e.g. (123) 456-7890"
                 type="tel"
               />
             </section>

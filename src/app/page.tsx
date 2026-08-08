@@ -1,4 +1,5 @@
 import { Hero } from "@/components/home/Hero";
+import { MembershipSignup } from "@/components/home/MembershipSignup";
 import { ShopByTextures } from "@/components/home/ShopByTextures";
 
 export default function Home() {
@@ -6,6 +7,7 @@ export default function Home() {
     <main className="min-h-screen bg-[#F1E4DD]">
       <Hero />
       <ShopByTextures />
+      <MembershipSignup />
     </main>
   );
 }

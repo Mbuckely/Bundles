@@ -1,0 +1,511 @@
+.page {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #ffffff;
+  color: #161616;
+}
+
+.container {
+  width: calc(100% - 40px);
+  max-width: 916px;
+
+  margin: 0 auto;
+
+  padding-top: 72px;
+  padding-bottom: 140px;
+}
+
+/* ========================================
+   TITLE + SEARCH
+======================================== */
+
+.topRow {
+  display: grid;
+
+  grid-template-columns: minmax(0, 1fr) 280px;
+
+  align-items: end;
+
+  column-gap: 72px;
+}
+
+.title {
+  margin: 0;
+  padding: 0;
+
+  font-family: var(--font-body), Arial, sans-serif;
+
+  font-size: 30px;
+  font-weight: 400;
+
+  line-height: 1.25;
+
+  letter-spacing: 0;
+
+  color: #111111;
+}
+
+/* ========================================
+   SEARCH
+======================================== */
+
+.searchBox {
+  width: 100%;
+  height: 48px;
+
+  display: flex;
+  align-items: center;
+
+  border-bottom: 1px solid #8d8d8d;
+}
+
+.searchInput {
+  width: 100%;
+  height: 100%;
+
+  margin: 0;
+  padding: 0 15px 0 0;
+
+  border: none;
+  outline: none;
+
+  background: transparent;
+
+  font-family: var(--font-body), Arial, sans-serif;
+
+  font-size: 14px;
+  font-weight: 400;
+
+  color: #161616;
+}
+
+.searchInput::placeholder {
+  color: #222222;
+  opacity: 1;
+}
+
+.searchIcon {
+  width: 21px;
+  height: 21px;
+
+  flex-shrink: 0;
+
+  color: #111111;
+}
+
+/* ========================================
+   CATEGORY TABS
+======================================== */
+
+.tabs {
+  width: max-content;
+  max-width: 100%;
+
+  display: flex;
+  align-items: flex-end;
+
+  margin-top: 44px;
+
+  overflow-x: auto;
+
+  scrollbar-width: none;
+}
+
+.tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.tab {
+  position: relative;
+
+  flex-shrink: 0;
+
+  margin: 0;
+
+  padding-top: 0;
+  padding-right: 27px;
+  padding-bottom: 19px;
+  padding-left: 27px;
+
+  border: none;
+  outline: none;
+
+  background: transparent;
+
+  font-family: var(--font-body), Arial, sans-serif;
+
+  font-size: 12px;
+  font-weight: 400;
+
+  color: #1c1c1c;
+
+  cursor: pointer;
+
+  transition:
+    color 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.tab:first-child {
+  padding-left: 0;
+  padding-right: 35px;
+}
+
+.tab:hover {
+  opacity: 0.65;
+}
+
+.activeTab {
+  color: #111111;
+}
+
+.activeTab::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  height: 3px;
+
+  background-color: #cacaca;
+}
+
+/* ========================================
+   FAQ LIST
+======================================== */
+
+.faqList {
+  width: 100%;
+
+  /*
+    Large gap between categories
+    and first FAQ question.
+  */
+  margin-top: 44px;
+}
+
+.faqItem {
+  width: 100%;
+
+  border-bottom: 1px solid #eeeeee;
+}
+
+/*
+  This is the important part.
+
+  Each FAQ row gets a fixed minimum height,
+  which produces the large white space
+  shown in the example.
+*/
+.questionButton {
+  width: 100%;
+
+  min-height: 102px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 40px;
+
+  margin: 0;
+  padding: 0;
+
+  border: none;
+  outline: none;
+
+  background-color: transparent;
+
+  text-align: left;
+
+  cursor: pointer;
+}
+
+.question {
+  display: block;
+
+  font-family: var(--font-body), Arial, sans-serif;
+
+  font-size: 16px;
+  font-weight: 500;
+
+  line-height: 1.5;
+
+  color: #111111;
+}
+
+/* ========================================
+   CHEVRON
+======================================== */
+
+.chevron {
+  width: 18px;
+  height: 18px;
+
+  flex-shrink: 0;
+
+  color: #111111;
+
+  transition: transform 0.25s ease;
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
+}
+
+/* ========================================
+   ANSWER
+======================================== */
+
+.answerWrapper {
+  display: grid;
+
+  grid-template-rows: 0fr;
+
+  opacity: 0;
+
+  transition:
+    grid-template-rows 0.3s ease,
+    opacity 0.25s ease;
+}
+
+.answerWrapperOpen {
+  grid-template-rows: 1fr;
+
+  opacity: 1;
+}
+
+.answerInner {
+  overflow: hidden;
+}
+
+.answer {
+  max-width: 850px;
+
+  margin: 0;
+
+  padding-top: 4px;
+  padding-right: 50px;
+  padding-bottom: 32px;
+  padding-left: 0;
+
+  font-family: var(--font-body), Arial, sans-serif;
+
+  font-size: 15px;
+  font-weight: 400;
+
+  line-height: 1.8;
+
+  color: #222222;
+}
+
+/* ========================================
+   NO RESULTS
+======================================== */
+
+.noResults {
+  padding-top: 80px;
+  padding-right: 20px;
+  padding-bottom: 80px;
+  padding-left: 20px;
+
+  border-top: 1px solid #eeeeee;
+  border-bottom: 1px solid #eeeeee;
+
+  text-align: center;
+}
+
+.noResults h2 {
+  margin: 0;
+
+  font-family: var(--font-body), Arial, sans-serif;
+
+  font-size: 20px;
+  font-weight: 500;
+
+  color: #111111;
+}
+
+.noResults p {
+  margin-top: 12px;
+
+  font-family: var(--font-body), Arial, sans-serif;
+
+  font-size: 14px;
+  font-weight: 400;
+
+  line-height: 1.6;
+
+  color: #666666;
+}
+
+.noResults button {
+  margin-top: 24px;
+
+  padding: 0 0 3px;
+
+  border: none;
+  border-bottom: 1px solid #111111;
+
+  background: transparent;
+
+  font-family: var(--font-body), Arial, sans-serif;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  color: #111111;
+
+  cursor: pointer;
+}
+
+/* ========================================
+   TABLET
+======================================== */
+
+@media (max-width: 768px) {
+  .container {
+    width: calc(100% - 32px);
+
+    padding-top: 55px;
+    padding-bottom: 100px;
+  }
+
+  .topRow {
+    grid-template-columns: 1fr;
+
+    row-gap: 40px;
+  }
+
+  .title {
+    font-size: 31px;
+  }
+
+  .searchBox {
+    width: 100%;
+  }
+
+  .tabs {
+    width: 100%;
+
+    margin-top: 40px;
+  }
+
+  .tab {
+    padding-right: 22px;
+    padding-bottom: 17px;
+    padding-left: 22px;
+  }
+
+  .tab:first-child {
+    padding-left: 0;
+    padding-right: 28px;
+  }
+
+  .faqList {
+    margin-top: 36px;
+  }
+
+  .questionButton {
+    min-height: 90px;
+
+    gap: 24px;
+  }
+
+  .question {
+    font-size: 15px;
+  }
+
+ .answer {
+  margin-top: 0;
+
+  padding-top: 4px;
+  padding-right: 30px;
+  padding-bottom: 32px;
+
+  font-size: 14px;
+}
+}
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 480px) {
+  .container {
+    width: calc(100% - 28px);
+
+    padding-top: 46px;
+    padding-bottom: 85px;
+  }
+
+  .topRow {
+    row-gap: 34px;
+  }
+
+  .title {
+    font-size: 28px;
+  }
+
+  .searchBox {
+    height: 46px;
+  }
+
+  .searchInput {
+    font-size: 14px;
+  }
+
+  .tabs {
+    margin-top: 35px;
+  }
+
+  .tab {
+    padding-right: 18px;
+    padding-bottom: 16px;
+    padding-left: 18px;
+
+    font-size: 11px;
+  }
+
+  .tab:first-child {
+    padding-left: 0;
+    padding-right: 23px;
+  }
+
+  .faqList {
+    margin-top: 30px;
+  }
+
+  .questionButton {
+    min-height: 88px;
+
+    gap: 20px;
+  }
+
+  .question {
+    font-size: 14px;
+
+    line-height: 1.5;
+  }
+
+  .chevron {
+    width: 17px;
+    height: 17px;
+  }
+
+  .answer {
+  margin-top: 0;
+
+  padding-top: 4px;
+  padding-right: 25px;
+  padding-bottom: 30px;
+
+  font-size: 14px;
+
+  line-height: 1.7;
+}
+}
