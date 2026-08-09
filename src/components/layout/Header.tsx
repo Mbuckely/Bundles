@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { SideCart } from "@/components/cart/SideCart";
 import { textureCategories } from "@/data/textures";
 import { MobileMenu } from "@/components/layout/MobileMenu";
@@ -77,6 +77,13 @@ function MenuIcon({ isOpen }: { isOpen: boolean }) {
   );
 }
 
+// Hiding the dropdown out from under the cursor (e.g. right after clicking
+// a texture link) makes the browser fire a native mouseleave/mouseenter
+// pair on the trigger even though the pointer never moved. We only want to
+// let a *real* re-hover (one where the cursor actually moved) reopen the
+// menu, so we compare the re-entry position against where it was closed.
+const DROPDOWN_REOPEN_MOVE_THRESHOLD_PX = 4;
+
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -84,6 +91,43 @@ export function Header() {
     null,
   );
   const [cartCount, setCartCount] = useState(0);
+  const dropdownClosedAtRef = useRef<{
+    label: string;
+    x: number;
+    y: number;
+  } | null>(null);
+
+  function closeDropdown(label: string, event: { clientX: number; clientY: number }) {
+    dropdownClosedAtRef.current = {
+      label,
+      x: event.clientX,
+      y: event.clientY,
+    };
+
+    setHiddenDropdownLabel(label);
+  }
+
+  function handleDropdownMouseEnter(
+    label: string,
+    event: { clientX: number; clientY: number },
+  ) {
+    const closedInfo = dropdownClosedAtRef.current;
+
+    if (closedInfo && closedInfo.label === label) {
+      const distance = Math.hypot(
+        event.clientX - closedInfo.x,
+        event.clientY - closedInfo.y,
+      );
+
+      if (distance < DROPDOWN_REOPEN_MOVE_THRESHOLD_PX) {
+        return;
+      }
+
+      dropdownClosedAtRef.current = null;
+    }
+
+    setHiddenDropdownLabel(null);
+  }
 
   useEffect(() => {
     function syncCartCount() {
@@ -101,14 +145,14 @@ export function Header() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-40 bg-[#5C382E]/95 shadow-[0_10px_30px_rgba(38,19,15,0.15)] backdrop-blur">
-      <div className="site-container relative flex min-h-[3.75rem] items-center justify-between gap-4 py-3 md:min-h-[4.25rem]">
+    <header className="relative z-40 bg-[#5C382E]/95 shadow-[0_10px_30px_rgba(38,19,15,0.15)] backdrop-blur">
+      <div className="site-container relative flex min-h-[3.25rem] items-center justify-between gap-4 py-2 md:min-h-[3.75rem]">
         <div className="hidden w-10 sm:block" aria-hidden="true" />
 
 
 <Link
   href="/"
-  className="absolute left-1/2 -translate-x-1/2 logo-flash text-center font-body text-lg font-extrabold uppercase tracking-wide text-[#FFF9F5] outline-none transition hover:text-[#D8BFB2] focus-visible:ring-2 focus-visible:ring-[#FFF9F5] focus-visible:ring-offset-2 sm:text-xl lg:text-2xl"
+  className="absolute left-1/2 -translate-x-1/2 logo-flash text-center font-body text-base font-extrabold uppercase tracking-wide text-[#FFF9F5] outline-none transition hover:text-[#D8BFB2] focus-visible:ring-2 focus-visible:ring-[#FFF9F5] focus-visible:ring-offset-2 sm:text-lg lg:text-xl"
 >
   RR LUX EXTENSIONS
 </Link>
@@ -147,12 +191,14 @@ export function Header() {
         aria-label="Main navigation"
         className="hidden md:block"
       >
-        <ul className="site-container flex h-11 items-center justify-center gap-8 text-sm font-semibold text-[#F1E4DD] lg:gap-12">
+        <ul className="site-container flex h-9 items-center justify-center gap-8 text-sm font-semibold text-[#F1E4DD] lg:gap-12">
           {navigationLinks.map((link) => (
             <li
               className="group relative"
               key={link.label}
-              onMouseLeave={() => setHiddenDropdownLabel(null)}
+              onMouseEnter={(event) =>
+                handleDropdownMouseEnter(link.label, event)
+              }
             >
               <Link
                 aria-haspopup={link.children ? "menu" : undefined}
@@ -183,7 +229,7 @@ export function Header() {
         <Link
   className="flex min-h-10 items-center justify-center px-5 py-2 font-semibold !text-black transition-colors duration-200 hover:!text-[#5C382E] focus-visible:outline-none"
   href={child.href}
-  onClick={() => setHiddenDropdownLabel(link.label)}
+  onClick={(event) => closeDropdown(link.label, event)}
   role="menuitem"
 >
   {child.label}
