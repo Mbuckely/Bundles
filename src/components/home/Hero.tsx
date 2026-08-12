@@ -23,25 +23,13 @@ export function Hero() {
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-[linear-gradient(180deg,rgba(251,247,243,0)_0%,rgba(251,247,243,0.12)_74%,#FBF7F3_100%)] md:h-40"
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-[linear-gradient(180deg,rgba(251,247,243,0)_0%,rgba(251,247,243,0.08)_70%,#FBF7F3_100%)] md:h-24"
       />
-      <svg
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 bottom-[-1px] h-20 w-full text-[#FBF7F3] md:h-24"
-        preserveAspectRatio="none"
-        viewBox="0 0 1440 120"
-      >
-        <path
-          d="M0 56C194 30 378 28 574 43C774 59 930 77 1128 60C1264 48 1362 31 1440 22V120H0Z"
-          fill="currentColor"
-        />
-      </svg>
 
       <div className="relative z-10 mx-auto flex min-h-[590px] max-w-3xl flex-col items-center justify-center px-5 pb-28 pt-20 text-center md:min-h-[660px] md:pb-32">
         <h1 className="luxury-shimmer mx-auto w-full max-w-[21rem] text-balance font-heading text-[2.65rem] font-bold leading-[0.98] drop-shadow-[0_2px_18px_rgba(45,27,23,0.46)] sm:max-w-3xl sm:text-6xl sm:leading-[0.95] md:text-7xl">
           Luxury Hair Made Effortless
         </h1>
-
       </div>
     </section>
   );
