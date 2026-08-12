@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export function Hero() {
   return (
-    <section className="relative isolate min-h-[590px] overflow-hidden bg-[#FBF7F3] md:min-h-[660px]">
+    <section className="relative isolate min-h-[590px] overflow-hidden border-b border-[#EFE4DD] bg-[#FBF7F3] md:min-h-[660px]">
       <Image
         alt=""
         aria-hidden="true"
@@ -20,10 +20,6 @@ export function Hero() {
       <div
         aria-hidden="true"
         className="absolute inset-0 bg-[radial-gradient(circle_at_50%_44%,rgba(45,27,23,0.26)_0%,rgba(45,27,23,0.12)_34%,rgba(45,27,23,0)_64%)]"
-      />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-[linear-gradient(180deg,rgba(251,247,243,0)_0%,rgba(251,247,243,0.08)_70%,#FBF7F3_100%)] md:h-24"
       />
 
       <div className="relative z-10 mx-auto flex min-h-[590px] max-w-3xl flex-col items-center justify-center px-5 pb-28 pt-20 text-center md:min-h-[660px] md:pb-32">
