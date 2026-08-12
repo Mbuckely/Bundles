@@ -13,8 +13,8 @@ export function Hero() {
         src="/rea/rea.jpg"
         style={{ objectPosition: "center 38%" }}
       />
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(251,247,243,0.78)_0%,rgba(241,228,221,0.62)_45%,rgba(51,32,26,0.38)_100%)]" />
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-44 bg-[linear-gradient(180deg,rgba(251,247,243,0)_0%,rgba(251,247,243,0.72)_62%,#FBF7F3_100%)] md:h-56" />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(45,27,23,0.12)_0%,rgba(241,228,221,0.34)_42%,rgba(51,32,26,0.34)_100%)]" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-56 bg-[linear-gradient(180deg,rgba(251,247,243,0)_0%,rgba(245,236,230,0.18)_34%,rgba(251,247,243,0.46)_66%,rgba(251,247,243,0.84)_86%,#FBF7F3_100%)] md:h-72" />
 
       <div className="relative z-10 mx-auto flex min-h-[590px] max-w-3xl flex-col items-center justify-center px-4 py-20 text-center md:min-h-[660px]">
         <h1 className="max-w-3xl font-heading text-5xl font-bold text-[#26130F] drop-shadow-[0_2px_18px_rgba(251,247,243,0.65)] sm:text-6xl md:text-7xl">
