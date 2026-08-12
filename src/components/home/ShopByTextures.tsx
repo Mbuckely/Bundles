@@ -208,7 +208,7 @@ export function ShopByTextures() {
   return (
     <section
       aria-busy={status === "loading"}
-      className="scroll-mt-32 bg-[#FBF7F3] pb-40 pt-24 md:pb-52 md:pt-28"
+      className="scroll-mt-32 bg-[#FBF7F3] pb-40 pt-16 md:pb-52 md:pt-20"
       id="shop-hair"
     >
       <div className="mx-auto w-full max-w-[1050px] px-6 sm:px-8 lg:px-10">
