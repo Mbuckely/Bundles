@@ -42,10 +42,6 @@ export function Hero() {
           Luxury Hair Made Effortless
         </h1>
 
-        <p className="mx-auto mt-6 w-full max-w-[21rem] text-balance font-body text-sm font-semibold leading-7 text-[#FFF9F5] drop-shadow-[0_2px_14px_rgba(45,27,23,0.52)] sm:max-w-2xl sm:text-lg sm:leading-8">
-          Premium extensions designed to blend naturally, style beautifully, and
-          keep your look polished every day.
-        </p>
       </div>
     </section>
   );
