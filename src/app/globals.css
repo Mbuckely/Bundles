@@ -340,13 +340,13 @@ img {
   color: transparent;
   background-image: linear-gradient(
     110deg,
-    #33201a 0%,
-    #33201a 40%,
+    #fff9f5 0%,
+    #fff9f5 40%,
     #ffffff 48%,
-    #ffdf9c 50%,
+    #ffe0a3 50%,
     #ffffff 52%,
-    #33201a 60%,
-    #33201a 100%
+    #fff9f5 60%,
+    #fff9f5 100%
   );
   background-size: 250% 100%;
   background-clip: text;

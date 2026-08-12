@@ -19,7 +19,7 @@ export function Hero() {
       />
       <div
         aria-hidden="true"
-        className="absolute inset-0 bg-[radial-gradient(circle_at_50%_44%,rgba(251,247,243,0.42)_0%,rgba(251,247,243,0.2)_34%,rgba(251,247,243,0)_64%)]"
+        className="absolute inset-0 bg-[radial-gradient(circle_at_50%_44%,rgba(45,27,23,0.26)_0%,rgba(45,27,23,0.12)_34%,rgba(45,27,23,0)_64%)]"
       />
       <div
         aria-hidden="true"
@@ -38,11 +38,11 @@ export function Hero() {
       </svg>
 
       <div className="relative z-10 mx-auto flex min-h-[590px] max-w-3xl flex-col items-center justify-center px-5 pb-28 pt-20 text-center md:min-h-[660px] md:pb-32">
-        <h1 className="luxury-shimmer mx-auto w-full max-w-[21rem] text-balance font-heading text-[2.65rem] font-bold leading-[0.98] drop-shadow-[0_2px_18px_rgba(251,247,243,0.62)] sm:max-w-3xl sm:text-6xl sm:leading-[0.95] md:text-7xl">
+        <h1 className="luxury-shimmer mx-auto w-full max-w-[21rem] text-balance font-heading text-[2.65rem] font-bold leading-[0.98] drop-shadow-[0_2px_18px_rgba(45,27,23,0.46)] sm:max-w-3xl sm:text-6xl sm:leading-[0.95] md:text-7xl">
           Luxury Hair Made Effortless
         </h1>
 
-        <p className="mx-auto mt-6 w-full max-w-[21rem] text-balance font-body text-sm font-semibold leading-7 text-[#33201A] drop-shadow-[0_1px_14px_rgba(251,247,243,0.86)] sm:max-w-2xl sm:text-lg sm:leading-8">
+        <p className="mx-auto mt-6 w-full max-w-[21rem] text-balance font-body text-sm font-semibold leading-7 text-[#FFF9F5] drop-shadow-[0_2px_14px_rgba(45,27,23,0.52)] sm:max-w-2xl sm:text-lg sm:leading-8">
           Premium extensions designed to blend naturally, style beautifully, and
           keep your look polished every day.
         </p>
